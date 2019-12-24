@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogInspector", "LogInspector\LogInspector.csproj", "{4FEC2B24-9EF7-4087-A646-99FB58CCCCD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogInspectorCLI", "LogInspectorCLI\LogInspectorCLI.csproj", "{D110E6C2-16E6-4A4C-BF0E-D120C7CE4592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogInspector.Modules", "LogInspector.Modules\LogInspector.Modules.csproj", "{85998C6F-95FA-4C70-A45F-D997C0D27762}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{826FD55D-C392-44D1-9D9D-8318BDC17F08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModuleLib", "..\ModuleLib\ModuleLib\ModuleLib.csproj", "{F89B06C7-43CC-4589-9859-3A4656AAA4A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogLib", "..\LogLib\LogLib\LogLib.csproj", "{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4FEC2B24-9EF7-4087-A646-99FB58CCCCD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FEC2B24-9EF7-4087-A646-99FB58CCCCD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FEC2B24-9EF7-4087-A646-99FB58CCCCD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FEC2B24-9EF7-4087-A646-99FB58CCCCD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D110E6C2-16E6-4A4C-BF0E-D120C7CE4592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D110E6C2-16E6-4A4C-BF0E-D120C7CE4592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D110E6C2-16E6-4A4C-BF0E-D120C7CE4592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D110E6C2-16E6-4A4C-BF0E-D120C7CE4592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{85998C6F-95FA-4C70-A45F-D997C0D27762}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85998C6F-95FA-4C70-A45F-D997C0D27762}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85998C6F-95FA-4C70-A45F-D997C0D27762}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85998C6F-95FA-4C70-A45F-D997C0D27762}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F89B06C7-43CC-4589-9859-3A4656AAA4A6} = {826FD55D-C392-44D1-9D9D-8318BDC17F08}
+		{EF4B0001-2859-4A09-8F95-3E5BEF4A5272} = {826FD55D-C392-44D1-9D9D-8318BDC17F08}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {06C8D4BD-0F7B-41B7-ABCF-1418E98FFA42}
+	EndGlobalSection
+EndGlobal
