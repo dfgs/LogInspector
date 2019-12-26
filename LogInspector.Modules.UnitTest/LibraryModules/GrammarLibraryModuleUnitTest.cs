@@ -6,7 +6,7 @@ using LogInspector.Modules.UnitTest.Mocks;
 using LogInspector.Models;
 using System.Linq;
 
-namespace LogInspector.Modules.UnitTest
+namespace LogInspector.Modules.UnitTest.LibraryModules
 {
 	[TestClass]
 	public class GrammarLibraryModuleUnitTest
@@ -66,6 +66,56 @@ namespace LogInspector.Modules.UnitTest
 			Assert.AreEqual(0, module.Count);
 			Assert.AreEqual(5, logger.Logs.Where(item => item.Contains("Error")).Count());
 		}
+
+		[TestMethod]
+		public void ShouldGetGrammar()
+		{
+			GrammarLibraryModule module;
+			MemoryLogger logger;
+			Grammar f1, f2, f3, result;
+
+			f1 = new Grammar() { NameSpace = "File0.xml" };
+			f2 = new Grammar() { NameSpace = "File1.xml" };
+			f3 = new Grammar() { NameSpace = "File2.xml" };
+
+			logger = new MemoryLogger(new DefaultLogFormatter());
+			module = new GrammarLibraryModule(logger, new MockedDirectoryEnumerator(3), new MockedGrammarFileLoader(f1, f2, f3));
+			module.LoadDirectory("path");
+			Assert.AreEqual(3, module.Count);
+
+			result = module.GetGrammar("File0.xml");
+			Assert.AreEqual(f1, result);
+			result = module.GetGrammar("File1.xml");
+			Assert.AreEqual(f2, result);
+			result = module.GetGrammar("File2.xml");
+			Assert.AreEqual(f3, result);
+
+
+		}
+		[TestMethod]
+		public void ShouldNotGetGrammar()
+		{
+			GrammarLibraryModule module;
+			MemoryLogger logger;
+			Grammar f1, f2, f3, result;
+
+			f1 = new Grammar() { NameSpace = "File0.xml" };
+			f2 = new Grammar() { NameSpace = "File1.xml" };
+			f3 = new Grammar() { NameSpace = "File2.xml" };
+
+			logger = new MemoryLogger(new DefaultLogFormatter());
+			module = new GrammarLibraryModule(logger, new MockedDirectoryEnumerator(3), new MockedGrammarFileLoader(f1, f2, f3));
+			module.LoadDirectory("path");
+			Assert.AreEqual(3, module.Count);
+
+			result = module.GetGrammar("File4.xml");
+			Assert.IsNull(result);
+			Assert.AreEqual(1, logger.Logs.Where(item => item.Contains("Warning")).Count());
+
+
+		}
+
+
 
 	}
 }

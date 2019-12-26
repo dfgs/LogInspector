@@ -6,10 +6,10 @@ using LogInspector.Modules.UnitTest.Mocks;
 using LogInspector.Models;
 using System.Linq;
 
-namespace LogInspector.Modules.UnitTest
+namespace LogInspector.Modules.UnitTest.LibraryModules
 {
 	[TestClass]
-	public class FormatHandlerLibraryModuleUnitTest
+	public class LexerFactoryModuleUnitTest
 	{
 		[TestMethod]
 		public void ShouldHaveValidConstructor()

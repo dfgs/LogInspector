@@ -10,7 +10,7 @@ namespace LogInspector.Modules.LibraryModules
 {
 	public interface IGrammarLibraryModule : ILibraryModule<Grammar>
 	{
-		
+		Grammar GetGrammar(string NameSpace);
 
 	}
 }

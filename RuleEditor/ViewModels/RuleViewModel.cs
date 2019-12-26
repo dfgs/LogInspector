@@ -99,9 +99,9 @@ namespace RuleEditor.ViewModels
 			}
 
 			reader = new StringCharReader(TestValue);
-			lexer = new Lexer(reader, new Rule(Name, predicate));
+			lexer = new Lexer( new Rule(Name, predicate));
 
-			if (!lexer.TryRead(out token))
+			if (!lexer.TryRead(reader,out token))
 			{
 				ErrorMessage = $"Failed to read token ({token.Value})";
 				return;

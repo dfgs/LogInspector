@@ -44,6 +44,8 @@
     <Compile Include="DirectoryEnumerator.cs" />
     <Compile Include="FileLoaders\FormatHandlerFileLoader.cs" />
     <Compile Include="FileLoaders\GrammarFileLoader.cs" />
+    <Compile Include="ILexerFactoryModule.cs" />
+    <Compile Include="LexerFactoryModule.cs" />
     <Compile Include="LibraryModules\FormatHandlerLibraryModule.cs" />
     <Compile Include="LibraryModules\GrammarLibraryModule.cs" />
     <Compile Include="IDirectoryEnumerator.cs" />
@@ -70,10 +72,6 @@
     <ProjectReference Include="..\LogInspector.Models\LogInspector.Models.csproj">
       <Project>{8EF47ED8-0654-4BD9-8360-C8B26A2D13D8}</Project>
       <Name>LogInspector.Models</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\RuleEditor.Helpers\RuleEditor.Helpers.csproj">
-      <Project>{24B8DD43-F567-4501-B7E8-B2CCC59C5338}</Project>
-      <Name>RuleEditor.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

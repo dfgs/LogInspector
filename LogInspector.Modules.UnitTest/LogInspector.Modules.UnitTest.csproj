@@ -49,10 +49,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LexerFactoryModuleUnitTest.cs" />
     <Compile Include="LibraryModules\FormatHandlerLibraryModuleUnitTest.cs" />
     <Compile Include="LibraryModules\GrammarLibraryModuleUnitTest.cs" />
     <Compile Include="Mocks\MockedDirectoryEnumerator.cs" />
     <Compile Include="Mocks\MockedFileLoader.cs" />
+    <Compile Include="Mocks\MockedGrammarLibraryModule.cs" />
+    <Compile Include="Mocks\MockedFormatHandlerLibraryModule.cs" />
+    <Compile Include="Mocks\MockedGrammarFileLoader.cs" />
     <Compile Include="Mocks\MockedFormatHandlerFileLoader.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -60,6 +64,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\LexerLib\LexerLib\LexerLib.csproj">
+      <Project>{8BA1F09C-69D8-455D-B3E4-4414E5790D39}</Project>
+      <Name>LexerLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\LogLib\LogLib\LogLib.csproj">
       <Project>{EF4B0001-2859-4A09-8F95-3E5BEF4A5272}</Project>
       <Name>LogLib</Name>

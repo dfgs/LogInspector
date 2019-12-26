@@ -19,7 +19,16 @@ namespace LogInspector.Modules.LibraryModules
 		{
 		}
 
-		
-
+		public Grammar GetGrammar(string NameSpace)
+		{
+			LogEnter();
+			Log(LogLevels.Information, $"Searching grammar with name space {NameSpace}");
+			foreach (Grammar grammar in Items)
+			{
+				if (grammar.NameSpace == NameSpace) return grammar;
+			}
+			Log(LogLevels.Warning, $"No grammar with name space {NameSpace} was found");
+			return null;
+		}
 	}
 }
