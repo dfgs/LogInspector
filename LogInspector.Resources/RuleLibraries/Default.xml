@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<RuleLibrary xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" NameSpace="Default">
+  <Items>
+    <Rule Name="Spaces">
+      <Predicate xsi:type="Character" Value="32" />
+    </Rule>
+    <Rule Name="RuleB">
+      <Predicate xsi:type="Character" Value="98" />
+    </Rule>
+  </Items>
+</RuleLibrary>

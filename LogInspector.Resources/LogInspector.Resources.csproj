@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D110E6C2-16E6-4A4C-BF0E-D120C7CE4592}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>LogInspectorCLI</RootNamespace>
-    <AssemblyName>LogInspectorCLI</AssemblyName>
+    <ProjectGuid>{68D342AB-4448-4FE6-AC6F-95599282A1B2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LogInspector.Resources</RootNamespace>
+    <AssemblyName>LogInspector.Resources</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,29 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="RuleLibraries\example.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\LexerLib\LexerLib\LexerLib.csproj">
-      <Project>{8ba1f09c-69d8-455d-b3e4-4414e5790d39}</Project>
-      <Name>LexerLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\LogLib\LogLib\LogLib.csproj">
-      <Project>{ef4b0001-2859-4a09-8f95-3e5bef4a5272}</Project>
-      <Name>LogLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogInspector.Examples\LogInspector.Examples.csproj">
-      <Project>{72c861ca-acd7-4b35-9fbe-10f440722b43}</Project>
-      <Name>LogInspector.Examples</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LogInspector.Modules\LogInspector.Modules.csproj">
-      <Project>{85998c6f-95fa-4c70-a45f-d997c0d27762}</Project>
-      <Name>LogInspector.Modules</Name>
-    </ProjectReference>
+    <None Include="RuleLibraries\Default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

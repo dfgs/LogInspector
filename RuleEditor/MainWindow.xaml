@@ -1,0 +1,53 @@
+﻿<Window x:Class="RuleEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RuleEditor"
+		xmlns:views="clr-namespace:RuleEditor.Views"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" WindowState="Maximized" ResizeMode="CanResizeWithGrip"
+        Title="Rule editor" Height="600" Width="800" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" >
+
+	<Window.CommandBindings>
+		<CommandBinding Command="New" CanExecute="NewCommandBinding_CanExecute" Executed="NewCommandBinding_Executed"/>
+		<CommandBinding Command="Open" CanExecute="OpenCommandBinding_CanExecute" Executed="OpenCommandBinding_Executed"/>
+		<CommandBinding Command="Save" CanExecute="SaveCommandBinding_CanExecute" Executed="SaveCommandBinding_Executed"/>
+		<CommandBinding Command="SaveAs" CanExecute="SaveAsCommandBinding_CanExecute" Executed="SaveAsCommandBinding_Executed"/>
+		<CommandBinding Command="Close" CanExecute="CloseCommandBinding_CanExecute" Executed="CloseCommandBinding_Executed"/>
+	</Window.CommandBindings>
+	
+    <DockPanel>
+		<ToolBar DockPanel.Dock="Top" >
+			<ToolBar.Resources>
+				<Style TargetType="{x:Type Image}">
+					<Style.Triggers>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Opacity" Value="0.3"/>
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</ToolBar.Resources>
+			<Button ToolTip="New rule library" Command="New">
+				<Image  Margin="2" Source="Images/page_white_add.png" Stretch="None"/>
+			</Button>
+			<Button ToolTip="Open rule library" Command="Open">
+				<Image Margin="2" Source="Images/folder.png" Stretch="None"/>
+			</Button>
+			<Button ToolTip="Save rule library" Command="Save">
+				<Image Margin="2" Source="Images/disk.png" Stretch="None"/>
+			</Button>
+			<Button ToolTip="Save rule library as" Command="SaveAs">
+				<Image Margin="2" Source="Images/disk.png" Stretch="None"/>
+			</Button>
+			<Button ToolTip="Close library" Command="Close">
+				<Image Margin="2" Source="Images/cross.png" Stretch="None"/>
+			</Button>
+		</ToolBar>
+		<StatusBar DockPanel.Dock="Bottom">
+			<TextBlock Text="{Binding SelectedItem.FileName,TargetNullValue=Not saved}"/>
+
+		</StatusBar>
+		<views:RuleLibrariesView/>
+
+	</DockPanel>
+</Window>
