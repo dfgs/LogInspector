@@ -106,7 +106,7 @@ namespace RuleEditor.ViewModels
 				ErrorMessage = $"Failed to read token ({token.Value})";
 				return;
 			}
-			ErrorMessage = "Token read successfully";
+			ErrorMessage = $"Token read successfully ({token.Value})";
 		}
 
 

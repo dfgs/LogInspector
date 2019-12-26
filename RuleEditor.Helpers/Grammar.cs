@@ -24,13 +24,35 @@ namespace RuleEditor.Helpers
              from _ in Parse.Char('\\')
              from value in Parse.AnyChar
              select new Character(value);
+        public static readonly Parser<ExceptCharacter> ExceptCharacterParser =
+              from _ in Parse.Char('!')
+              from value in Parse.AnyChar
+              select new ExceptCharacter(value);
 
         public static readonly Parser<Character> CharacterParser =
-             from value in Parse.CharExcept(@".\")
+             from value in Parse.CharExcept(@".\[!")
              select new Character(value);
+
+        public static readonly Parser<CharacterRange> CharacterRangeParser =
+            from _ in Parse.Char('[')
+            from firstValue in Parse.AnyChar
+            from __ in Parse.Char('-')
+            from lastValue in Parse.AnyChar
+            from ___ in Parse.Char(']')
+            select new CharacterRange(firstValue, lastValue);
         
+        public static readonly Parser<ExceptCharacterRange> ExceptCharacterRangeParser =
+             from _ in Parse.Char('!')
+             from __ in Parse.Char('[')
+             from firstValue in Parse.AnyChar
+             from ___ in Parse.Char('-')
+             from lastValue in Parse.AnyChar
+             from ____ in Parse.Char(']')
+             select new ExceptCharacterRange(firstValue, lastValue);
+
+
         private static readonly Parser<Predicate> ShiftPredicateParser =
-             from predicate in AnyCharacterParser.Or<Predicate>(EscapedCharacterParser).Or<Predicate>(CharacterParser)
+             from predicate in AnyCharacterParser.Or<Predicate>(CharacterRangeParser).Or<Predicate>(ExceptCharacterRangeParser).Or<Predicate>(EscapedCharacterParser).Or<Predicate>(ExceptCharacterParser).Or<Predicate>(CharacterParser)
              select predicate;
 
 
@@ -68,7 +90,8 @@ namespace RuleEditor.Helpers
             select new Sequence(predicates.ToArray());
 
         public static readonly Parser<Predicate> PredicateParser =
-            from predicate in PerhapsParser.Or<Predicate>(OneOrMoreTimesParser).Or<Predicate>(ZeroOrMoreTimesParser).Or<Predicate>(OrParser).Or<Predicate>(SequenceParser).Or<Predicate>(ShiftPredicateParser)
+            from predicate in PerhapsParser.Or<Predicate>(OneOrMoreTimesParser).Or<Predicate>(ZeroOrMoreTimesParser).Or<Predicate>(OrParser).Or<Predicate>(SequenceParser).Or<Predicate>(ShiftPredicateParser).End()
+            
             select predicate;
     }
 }

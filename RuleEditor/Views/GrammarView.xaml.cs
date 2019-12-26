@@ -16,13 +16,24 @@ using System.Windows.Shapes;
 namespace RuleEditor.Views
 {
 	/// <summary>
-	/// Logique d'interaction pour ProjectsView.xaml
+	/// Logique d'interaction pour LibraryView.xaml
 	/// </summary>
-	public partial class RuleLibrariesView : UserControl
+	public partial class GrammarView : UserControl
 	{
-		public RuleLibrariesView()
+		public GrammarView()
 		{
 			InitializeComponent();
+		}
+
+		private void AddCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+		{
+			e.CanExecute = true;
+			e.Handled = true;
+		}
+
+		private void AddCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+		{
+
 		}
 	}
 }

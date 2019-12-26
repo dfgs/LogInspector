@@ -57,16 +57,16 @@
     </ApplicationDefinition>
     <Compile Include="ViewModels\CollectionViewModel.cs" />
     <Compile Include="ViewModels\RuleCollectionViewModel.cs" />
-    <Compile Include="ViewModels\RuleLibrariesViewModel.cs" />
-    <Compile Include="ViewModels\RuleLibraryViewModel.cs" />
+    <Compile Include="ViewModels\GrammarsViewModel.cs" />
+    <Compile Include="ViewModels\GrammarViewModel.cs" />
     <Compile Include="ViewModels\RuleViewModel.cs" />
     <Compile Include="ViewModels\UICommand.cs" />
     <Compile Include="ViewModels\ViewModel.cs" />
-    <Compile Include="Views\RuleLibraryView.xaml.cs">
-      <DependentUpon>RuleLibraryView.xaml</DependentUpon>
+    <Compile Include="Views\GrammarView.xaml.cs">
+      <DependentUpon>GrammarView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RuleLibrariesView.xaml.cs">
-      <DependentUpon>RuleLibrariesView.xaml</DependentUpon>
+    <Compile Include="Views\GrammarsView.xaml.cs">
+      <DependentUpon>GrammarsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RuleView.xaml.cs">
       <DependentUpon>RuleView.xaml</DependentUpon>
@@ -83,11 +83,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Views\RuleLibraryView.xaml">
+    <Page Include="Views\GrammarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RuleLibrariesView.xaml">
+    <Page Include="Views\GrammarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

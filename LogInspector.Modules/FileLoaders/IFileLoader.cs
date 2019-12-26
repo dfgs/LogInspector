@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogInspector.Modules
+namespace LogInspector.Modules.FileLoaders
 {
-    public class Class1
-    {
-    }
+	public interface IFileLoader<T>
+	{
+		T Load(string FileName);
+	}
 }

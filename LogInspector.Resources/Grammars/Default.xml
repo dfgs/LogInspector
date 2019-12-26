@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<Grammar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" NameSpace="Default">
+  <Items>
+    <Rule Name="Space" Description="White spaces">
+      <Predicate xsi:type="OneOrMoreTimes">
+        <Item xsi:type="Character" Value="32" />
+      </Predicate>
+    </Rule>
+    <Rule Name="Number" Description="Integer value">
+      <Predicate xsi:type="OneOrMoreTimes">
+        <Item xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+      </Predicate>
+    </Rule>
+    <Rule Name="Word" Description="A single word">
+      <Predicate xsi:type="OneOrMoreTimes">
+        <Item xsi:type="ExceptCharacter" Value="32" />
+      </Predicate>
+    </Rule>
+  </Items>
+</Grammar>

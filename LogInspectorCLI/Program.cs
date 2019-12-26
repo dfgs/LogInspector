@@ -1,4 +1,5 @@
-﻿using LogLib;
+﻿using LogInspector.Modules.LibraryModules;
+using LogLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace LogInspectorCLI
 		static void Main(string[] args)
 		{
 			ILogger logger;
+			GrammarLibraryModule grammarLibraryModule;
+			FormatHandlerLibraryModule formatHandlerLibraryModule;
 
 			logger = new ConsoleLogger(new DefaultLogFormatter());
 
@@ -21,6 +24,11 @@ namespace LogInspectorCLI
 				return;
 			}
 
+			grammarLibraryModule = new GrammarLibraryModule(logger);
+			grammarLibraryModule.LoadDirectory(Properties.Settings.Default.GrammarLibrariesPath);
+
+			formatHandlerLibraryModule = new FormatHandlerLibraryModule(logger);
+			formatHandlerLibraryModule.LoadDirectory(Properties.Settings.Default.FormatHandlerLibrariesPath);
 
 			Console.ReadLine();
 		}

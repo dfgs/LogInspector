@@ -10,16 +10,16 @@ using System.Windows;
 
 namespace RuleEditor.ViewModels
 {
-	public class RuleLibraryViewModel:ViewModel<RuleLibrary>
+	public class GrammarViewModel:ViewModel<Grammar>
 	{
-		public static readonly DependencyProperty FileNameProperty = DependencyProperty.Register("FileName", typeof(string), typeof(RuleLibraryViewModel));
+		public static readonly DependencyProperty FileNameProperty = DependencyProperty.Register("FileName", typeof(string), typeof(GrammarViewModel));
 		public string FileName
 		{
 			get { return (string)GetValue(FileNameProperty); }
 			set { SetValue(FileNameProperty, value); }
 		}
 
-		public static readonly DependencyProperty NameProperty = DependencyProperty.Register("Name", typeof(string), typeof(RuleLibraryViewModel));
+		public static readonly DependencyProperty NameProperty = DependencyProperty.Register("Name", typeof(string), typeof(GrammarViewModel));
 		public string Name
 		{
 			get { return (string)GetValue(NameProperty); }
@@ -27,7 +27,7 @@ namespace RuleEditor.ViewModels
 		}
 
 
-		public static readonly DependencyProperty NameSpaceProperty = DependencyProperty.Register("NameSpace", typeof(string), typeof(RuleLibraryViewModel));
+		public static readonly DependencyProperty NameSpaceProperty = DependencyProperty.Register("NameSpace", typeof(string), typeof(GrammarViewModel));
 		public string NameSpace
 		{
 			get { return (string)GetValue(NameSpaceProperty); }
@@ -36,7 +36,7 @@ namespace RuleEditor.ViewModels
 
 
 
-		public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(RuleCollectionViewModel), typeof(RuleLibraryViewModel));
+		public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register("Items", typeof(RuleCollectionViewModel), typeof(GrammarViewModel));
 		public RuleCollectionViewModel Items
 		{
 			get { return (RuleCollectionViewModel)GetValue(ItemsProperty); }
@@ -44,13 +44,13 @@ namespace RuleEditor.ViewModels
 		}
 
 
-		public RuleLibraryViewModel()
+		public GrammarViewModel()
 		{
 			Name = "New library";
 			Items = new RuleCollectionViewModel();
 		}
 
-		public override void Load(RuleLibrary Model)
+		public override void Load(Grammar Model)
 		{
 			RuleViewModel ruleViewModel;
 
@@ -63,11 +63,11 @@ namespace RuleEditor.ViewModels
 			}
 		}
 
-		public override RuleLibrary Save()
+		public override Grammar Save()
 		{
-			RuleLibrary ruleLibrary;
+			Grammar ruleLibrary;
 
-			ruleLibrary = new RuleLibrary();
+			ruleLibrary = new Grammar();
 			ruleLibrary.NameSpace = NameSpace;
 			foreach(RuleViewModel ruleViewModel in Items)
 			{

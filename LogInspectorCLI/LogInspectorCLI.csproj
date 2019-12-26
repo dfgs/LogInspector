@@ -45,9 +45,18 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\LexerLib\LexerLib\LexerLib.csproj">
@@ -58,13 +67,25 @@
       <Project>{ef4b0001-2859-4a09-8f95-3e5bef4a5272}</Project>
       <Name>LogLib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\ModuleLib\ModuleLib\ModuleLib.csproj">
+      <Project>{F89B06C7-43CC-4589-9859-3A4656AAA4A6}</Project>
+      <Name>ModuleLib</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogInspector.Examples\LogInspector.Examples.csproj">
       <Project>{72c861ca-acd7-4b35-9fbe-10f440722b43}</Project>
       <Name>LogInspector.Examples</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogInspector.Models\LogInspector.Models.csproj">
+      <Project>{8EF47ED8-0654-4BD9-8360-C8B26A2D13D8}</Project>
+      <Name>LogInspector.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogInspector.Modules\LogInspector.Modules.csproj">
       <Project>{85998c6f-95fa-4c70-a45f-d997c0d27762}</Project>
       <Name>LogInspector.Modules</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogInspector.Resources\LogInspector.Resources.csproj">
+      <Project>{68d342ab-4448-4fe6-ac6f-95599282a1b2}</Project>
+      <Name>LogInspector.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

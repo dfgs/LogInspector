@@ -44,12 +44,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RuleLibraries\example.xml" />
+    <None Include="Grammars\example.xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="RuleLibraries\Default.xml">
+    <None Include="Grammars\Default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FormatHandlers\Default.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FormatHandlers\example.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

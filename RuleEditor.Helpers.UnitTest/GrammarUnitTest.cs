@@ -33,6 +33,15 @@ namespace RuleEditor.Helpers.UnitTest
 			Assert.IsNotNull(predicate);
 			Assert.AreEqual('\\', predicate.Value);
 		}
+		[TestMethod]
+		public void ShouldParseExceptCharacter()
+		{
+			ExceptCharacter predicate;
+
+			predicate = Grammar.ExceptCharacterParser.Parse("!a");
+			Assert.IsNotNull(predicate);
+			Assert.AreEqual('a', predicate.Value);
+		}
 
 		[TestMethod]
 		public void ShouldParseCharacter()
@@ -45,6 +54,27 @@ namespace RuleEditor.Helpers.UnitTest
 
 			Assert.ThrowsException<Sprache.ParseException>(() => Grammar.CharacterParser.Parse("."));
 			Assert.ThrowsException<Sprache.ParseException>(() => Grammar.CharacterParser.Parse(@"\"));
+		}
+		[TestMethod]
+		public void ShouldParseCharacterRange()
+		{
+			CharacterRange predicate;
+
+			predicate = Grammar.CharacterRangeParser.Parse("[a-z]");
+			Assert.IsNotNull(predicate);
+			Assert.AreEqual('a', predicate.FirstValue);
+			Assert.AreEqual('z', predicate.LastValue);
+		}
+
+		[TestMethod]
+		public void ShouldParseExceptCharacterRange()
+		{
+			ExceptCharacterRange predicate;
+
+			predicate = Grammar.ExceptCharacterRangeParser.Parse("![a-z]");
+			Assert.IsNotNull(predicate);
+			Assert.AreEqual('a', predicate.FirstValue);
+			Assert.AreEqual('z', predicate.LastValue);
 		}
 
 		[TestMethod]
@@ -129,6 +159,9 @@ namespace RuleEditor.Helpers.UnitTest
 			Assert.IsNotNull(predicate);
 			Assert.AreEqual(8, predicate.Items.Count);
 
+			predicate = Grammar.SequenceParser.Parse(@"a?![a-z]b!a[c-d]");
+			Assert.IsNotNull(predicate);
+			Assert.AreEqual(5, predicate.Items.Count);
 
 		}
 

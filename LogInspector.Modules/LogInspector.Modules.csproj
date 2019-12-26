@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>85998c6f-95fa-4c70-a45f-d997c0d27762</ProjectGuid>
+    <ProjectGuid>{85998C6F-95FA-4C70-A45F-D997C0D27762}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LogInspector.Modules</RootNamespace>
@@ -31,24 +31,50 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="DirectoryEnumerator.cs" />
+    <Compile Include="FileLoaders\FormatHandlerFileLoader.cs" />
+    <Compile Include="FileLoaders\GrammarFileLoader.cs" />
+    <Compile Include="LibraryModules\FormatHandlerLibraryModule.cs" />
+    <Compile Include="LibraryModules\GrammarLibraryModule.cs" />
+    <Compile Include="IDirectoryEnumerator.cs" />
+    <Compile Include="FileLoaders\IFileLoader.cs" />
+    <Compile Include="LibraryModules\IGrammarLibraryModule.cs" />
+    <Compile Include="LibraryModules\IFormatHandlerLibraryModule.cs" />
+    <Compile Include="LibraryModules\ILibraryModule.cs" />
+    <Compile Include="LibraryModules\LibraryModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\LexerLib\LexerLib\LexerLib.csproj">
+      <Project>{8ba1f09c-69d8-455d-b3e4-4414e5790d39}</Project>
+      <Name>LexerLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LogLib\LogLib\LogLib.csproj">
+      <Project>{ef4b0001-2859-4a09-8f95-3e5bef4a5272}</Project>
+      <Name>LogLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\ModuleLib\ModuleLib\ModuleLib.csproj">
+      <Project>{f89b06c7-43cc-4589-9859-3a4656aaa4a6}</Project>
+      <Name>ModuleLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LogInspector.Models\LogInspector.Models.csproj">
+      <Project>{8EF47ED8-0654-4BD9-8360-C8B26A2D13D8}</Project>
+      <Name>LogInspector.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RuleEditor.Helpers\RuleEditor.Helpers.csproj">
+      <Project>{24B8DD43-F567-4501-B7E8-B2CCC59C5338}</Project>
+      <Name>RuleEditor.Helpers</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>

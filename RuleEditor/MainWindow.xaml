@@ -27,19 +27,19 @@
 					</Style.Triggers>
 				</Style>
 			</ToolBar.Resources>
-			<Button ToolTip="New rule library" Command="New">
+			<Button ToolTip="New grammar" Command="New">
 				<Image  Margin="2" Source="Images/page_white_add.png" Stretch="None"/>
 			</Button>
-			<Button ToolTip="Open rule library" Command="Open">
+			<Button ToolTip="Open grammar" Command="Open">
 				<Image Margin="2" Source="Images/folder.png" Stretch="None"/>
 			</Button>
-			<Button ToolTip="Save rule library" Command="Save">
+			<Button ToolTip="Save grammar" Command="Save">
 				<Image Margin="2" Source="Images/disk.png" Stretch="None"/>
 			</Button>
-			<Button ToolTip="Save rule library as" Command="SaveAs">
+			<Button ToolTip="Save grammar as" Command="SaveAs">
 				<Image Margin="2" Source="Images/disk.png" Stretch="None"/>
 			</Button>
-			<Button ToolTip="Close library" Command="Close">
+			<Button ToolTip="Close grammar" Command="Close">
 				<Image Margin="2" Source="Images/cross.png" Stretch="None"/>
 			</Button>
 		</ToolBar>
@@ -47,7 +47,7 @@
 			<TextBlock Text="{Binding SelectedItem.FileName,TargetNullValue=Not saved}"/>
 
 		</StatusBar>
-		<views:RuleLibrariesView/>
+		<views:GrammarsView/>
 
 	</DockPanel>
 </Window>

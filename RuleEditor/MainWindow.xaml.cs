@@ -23,10 +23,10 @@ namespace RuleEditor
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private RuleLibrariesViewModel libraries;
+		private GrammarsViewModel libraries;
 		public MainWindow()
 		{
-			libraries = new RuleLibrariesViewModel();
+			libraries = new GrammarsViewModel();
 			InitializeComponent();
 			DataContext = libraries;
 		}
@@ -44,8 +44,8 @@ namespace RuleEditor
 
 		private void NewCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			RuleLibraryViewModel project;
-			project = new RuleLibraryViewModel();
+			GrammarViewModel project;
+			project = new GrammarViewModel();
 			
 			libraries.Items.Add(project);
 			libraries.SelectedItem = project;
@@ -58,7 +58,7 @@ namespace RuleEditor
 
 		private void OpenCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			RuleLibraryViewModel ruleLibrary;
+			GrammarViewModel ruleLibrary;
 			OpenFileDialog dialog;
 
 			dialog = new OpenFileDialog();
@@ -71,10 +71,10 @@ namespace RuleEditor
 				try
 				{
 
-					ruleLibrary = new RuleLibraryViewModel();
+					ruleLibrary = new GrammarViewModel();
 					ruleLibrary.FileName = dialog.FileName;
 					ruleLibrary.Name = Path.GetFileNameWithoutExtension(dialog.FileName);
-					ruleLibrary.Load(RuleLibrary.LoadFromFile(dialog.FileName));
+					ruleLibrary.Load(Grammar.LoadFromFile(dialog.FileName));
 
 					libraries.Items.Add(ruleLibrary);
 					libraries.SelectedItem = ruleLibrary;
@@ -94,7 +94,7 @@ namespace RuleEditor
 
 		private void SaveCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			RuleLibraryViewModel ruleLibrary;
+			GrammarViewModel ruleLibrary;
 	
 			try
 			{
@@ -115,7 +115,7 @@ namespace RuleEditor
 
 		private void SaveAsCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
 		{
-			RuleLibraryViewModel ruleLibrary;
+			GrammarViewModel ruleLibrary;
 			SaveFileDialog dialog;
 
 			dialog = new SaveFileDialog();
