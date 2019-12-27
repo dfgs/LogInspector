@@ -16,43 +16,54 @@ namespace RuleEditor.Helpers
             yield return First;
             foreach (Predicate next in Next) yield return next;
         }
+        private static readonly Parser<char> EscapedCharacterParser =
+            from _ in Parse.Char('\\' )
+            from value in Parse.AnyChar
+            select value;
+        private static readonly Parser<char> EscapedCharacterUsingCodeParser =
+            from _ in Parse.Char('\\')
+            from value in Parse.Digit.AtLeastOnce().Text()
+            select (char)int.Parse(value);
+        private static readonly Parser<char> Char =
+            from value in EscapedCharacterUsingCodeParser.Or(EscapedCharacterParser).Or(Parse.CharExcept(@".\[!"))
+            select value;
+
+
+  
 
         public static readonly Parser<AnyCharacter> AnyCharacterParser =
             from _ in Parse.Char('.')
             select new AnyCharacter();
-        public static readonly Parser<Character> EscapedCharacterParser =
-             from _ in Parse.Char('\\')
-             from value in Parse.AnyChar
-             select new Character(value);
+        
         public static readonly Parser<ExceptCharacter> ExceptCharacterParser =
               from _ in Parse.Char('!')
               from value in Parse.AnyChar
               select new ExceptCharacter(value);
 
         public static readonly Parser<Character> CharacterParser =
-             from value in Parse.CharExcept(@".\[!")
+             from value in Char
              select new Character(value);
 
         public static readonly Parser<CharacterRange> CharacterRangeParser =
             from _ in Parse.Char('[')
-            from firstValue in Parse.AnyChar
+            from firstValue in Char
             from __ in Parse.Char('-')
-            from lastValue in Parse.AnyChar
+            from lastValue in Char
             from ___ in Parse.Char(']')
             select new CharacterRange(firstValue, lastValue);
         
         public static readonly Parser<ExceptCharacterRange> ExceptCharacterRangeParser =
              from _ in Parse.Char('!')
              from __ in Parse.Char('[')
-             from firstValue in Parse.AnyChar
+             from firstValue in Char
              from ___ in Parse.Char('-')
-             from lastValue in Parse.AnyChar
+             from lastValue in Char
              from ____ in Parse.Char(']')
              select new ExceptCharacterRange(firstValue, lastValue);
 
 
         private static readonly Parser<Predicate> ShiftPredicateParser =
-             from predicate in AnyCharacterParser.Or<Predicate>(CharacterRangeParser).Or<Predicate>(ExceptCharacterRangeParser).Or<Predicate>(EscapedCharacterParser).Or<Predicate>(ExceptCharacterParser).Or<Predicate>(CharacterParser)
+             from predicate in AnyCharacterParser.Or<Predicate>(CharacterRangeParser).Or<Predicate>(ExceptCharacterRangeParser).Or<Predicate>(ExceptCharacterParser).Or<Predicate>(CharacterParser)
              select predicate;
 
 

@@ -6,15 +6,58 @@
         <Item xsi:type="Character" Value="32" />
       </Predicate>
     </Rule>
-    <Rule Name="Number" Description="Integer value">
+		<Rule Name="DateTime" Description="Date and time">
+			<Predicate xsi:type="Sequence">
+				<Items>
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="Character" Value="45" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="Character" Value="45" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+					<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+				</Items>
+			</Predicate>
+		</Rule>
+
+		<Rule Name="Number" Description="Integer value">
       <Predicate xsi:type="OneOrMoreTimes">
         <Item xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
       </Predicate>
     </Rule>
     <Rule Name="Word" Description="A single word">
-      <Predicate xsi:type="OneOrMoreTimes">
-        <Item xsi:type="ExceptCharacter" Value="32" />
+			<Predicate xsi:type="OneOrMoreTimes">
+				<Item xsi:type="Or">
+					<Items>
+						<Predicate xsi:type="CharacterRange" FirstValue="48" LastValue="57" />
+						<Predicate xsi:type="CharacterRange" FirstValue="65" LastValue="90" />
+						<Predicate xsi:type="CharacterRange" FirstValue="97" LastValue="122" />
+					</Items>
+				</Item>
       </Predicate>
     </Rule>
+		<Rule Name="LF" Description="Line feed">
+			<Predicate xsi:type="Sequence">
+				<Items>
+					<Predicate xsi:type="Character" Value="13" />
+					<Predicate xsi:type="Character" Value="10" />
+				</Items>
+			</Predicate>
+		</Rule>
+    <Rule Name="Symbol">
+      <Predicate xsi:type="Or">
+        <Items>
+          <Predicate xsi:type="CharacterRange" FirstValue="0" LastValue="31" />
+          <Predicate xsi:type="CharacterRange" FirstValue="33" LastValue="47" />
+          <Predicate xsi:type="CharacterRange" FirstValue="58" LastValue="64" />
+          <Predicate xsi:type="CharacterRange" FirstValue="91" LastValue="96" />
+          <Predicate xsi:type="CharacterRange" FirstValue="123" LastValue="255" />
+        </Items>
+      </Predicate>
+    </Rule>
+    
   </Items>
 </Grammar>

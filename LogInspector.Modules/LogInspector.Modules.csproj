@@ -54,6 +54,8 @@
     <Compile Include="LibraryModules\IFormatHandlerLibraryModule.cs" />
     <Compile Include="LibraryModules\ILibraryModule.cs" />
     <Compile Include="LibraryModules\LibraryModule.cs" />
+    <Compile Include="LogReaderModules\ConsoleLogReaderModule.cs" />
+    <Compile Include="LogReaderModules\ILogReaderModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

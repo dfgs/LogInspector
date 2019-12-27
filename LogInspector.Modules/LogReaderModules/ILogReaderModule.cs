@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogInspector.Modules
+namespace LogInspector.Modules.LogReaderModules
 {
-	public interface ILexerFactoryModule:IModule
+	public interface ILogReaderModule : IModule
 	{
-		ILexer BuildLexer(string FileName);
+		void Read(ICharReader Reader);
 	}
 }

@@ -25,7 +25,11 @@ namespace LogInspector.Modules.LibraryModules
 			Log(LogLevels.Information, $"Searching grammar with name space {NameSpace}");
 			foreach (Grammar grammar in Items)
 			{
-				if (grammar.NameSpace == NameSpace) return grammar;
+				if (grammar.NameSpace == NameSpace)
+				{
+					Log(LogLevels.Information, $"Grammar with name space {NameSpace} found");
+					return grammar;
+				}
 			}
 			Log(LogLevels.Warning, $"No grammar with name space {NameSpace} was found");
 			return null;

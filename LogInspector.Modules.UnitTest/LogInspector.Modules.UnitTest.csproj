@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleLogReaderModuleUnitTest.cs" />
     <Compile Include="LexerFactoryModuleUnitTest.cs" />
     <Compile Include="LibraryModules\FormatHandlerLibraryModuleUnitTest.cs" />
     <Compile Include="LibraryModules\GrammarLibraryModuleUnitTest.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Mocks\MockedFormatHandlerLibraryModule.cs" />
     <Compile Include="Mocks\MockedGrammarFileLoader.cs" />
     <Compile Include="Mocks\MockedFormatHandlerFileLoader.cs" />
+    <Compile Include="Mocks\MockedLexer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
