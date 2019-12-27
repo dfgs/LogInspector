@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FormatHandler.cs" />
+    <Compile Include="Style.cs" />
+    <Compile Include="StyleSheet.cs" />
     <Compile Include="Grammar.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XmlModel.cs" />

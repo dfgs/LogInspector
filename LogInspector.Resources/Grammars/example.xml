@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <Grammar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" NameSpace="Default">
-  <Items>
-    <Rule Name="RuleA">
-      <Predicate xsi:type="Character" Value="97" />
-    </Rule>
-    <Rule Name="RuleB">
-      <Predicate xsi:type="Character" Value="98" />
-    </Rule>
-  </Items>
+	<Items>
+		<Rule Name="RuleA">
+			<Predicate xsi:type="Character" Value="97" />
+		</Rule>
+		<Rule Name="RuleB">
+			<Predicate xsi:type="Character" Value="98" />
+		</Rule>
+	</Items>
 </Grammar>

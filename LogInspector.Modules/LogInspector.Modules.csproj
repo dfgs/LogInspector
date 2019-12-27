@@ -43,13 +43,16 @@
   <ItemGroup>
     <Compile Include="DirectoryEnumerator.cs" />
     <Compile Include="FileLoaders\FormatHandlerFileLoader.cs" />
+    <Compile Include="FileLoaders\StyleSheetFileLoader.cs" />
     <Compile Include="FileLoaders\GrammarFileLoader.cs" />
     <Compile Include="ILexerFactoryModule.cs" />
     <Compile Include="LexerFactoryModule.cs" />
     <Compile Include="LibraryModules\FormatHandlerLibraryModule.cs" />
+    <Compile Include="LibraryModules\StyleSheetLibraryModule.cs" />
     <Compile Include="LibraryModules\GrammarLibraryModule.cs" />
     <Compile Include="IDirectoryEnumerator.cs" />
     <Compile Include="FileLoaders\IFileLoader.cs" />
+    <Compile Include="LibraryModules\IStyleSheetLibraryModule.cs" />
     <Compile Include="LibraryModules\IGrammarLibraryModule.cs" />
     <Compile Include="LibraryModules\IFormatHandlerLibraryModule.cs" />
     <Compile Include="LibraryModules\ILibraryModule.cs" />
