@@ -1,4 +1,5 @@
 ﻿using LexerLib;
+using LogInspector.Models;
 using ModuleLib;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace LogInspector.Modules
 {
 	public interface ILexerFactoryModule:IModule
 	{
-		ILexer BuildLexer(string FileName);
+		ILexer BuildLexer(FormatHandler FormatHandler);
 	}
 }

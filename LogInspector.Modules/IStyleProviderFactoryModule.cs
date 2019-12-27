@@ -11,6 +11,6 @@ namespace LogInspector.Modules
 {
 	public interface IStyleProviderFactoryModule:IModule
 	{
-		IStyleProvider BuildStyleProvider(string FileName);
+		IStyleProvider BuildStyleProvider(FormatHandler FormatHandler);
 	}
 }

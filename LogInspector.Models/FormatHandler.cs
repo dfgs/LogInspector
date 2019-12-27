@@ -22,7 +22,24 @@ namespace LogInspector.Models
 			get;
 			set;
 		}
-
+		[XmlAttribute]
+		public string LineFeedClass
+		{
+			get;
+			set;
+		}
+		[XmlAttribute]
+		public string LogStartClass
+		{
+			get;
+			set;
+		}
+		[XmlAttribute]
+		public string LogStartValue
+		{
+			get;
+			set;
+		}
 		public List<string> Grammars
 		{
 			get;

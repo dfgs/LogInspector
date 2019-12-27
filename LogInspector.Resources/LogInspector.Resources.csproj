@@ -52,7 +52,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FormatHandlers\Default.xml">
+    <Content Include="FormatHandlers\100-Nice.NTR.CallController.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="FormatHandlers\999-Default.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="FormatHandlers\example.xml" />

@@ -13,36 +13,27 @@ namespace LogInspector.Modules
 {
 	public class LexerFactoryModule : Module, ILexerFactoryModule
 	{
-		private IFormatHandlerLibraryModule formatHandlerLibraryModule;
 		private IGrammarLibraryModule grammarLibraryModule;
-		public LexerFactoryModule(ILogger Logger, IFormatHandlerLibraryModule FormatHandlerLibraryModule,IGrammarLibraryModule GrammarLibraryModule) : base(Logger)
+		public LexerFactoryModule(ILogger Logger, IGrammarLibraryModule GrammarLibraryModule) : base(Logger)
 		{
-			AssertParameterNotNull(FormatHandlerLibraryModule, "FormatHandlerLibraryModule", out formatHandlerLibraryModule);
 			AssertParameterNotNull(GrammarLibraryModule, "GrammarLibraryModule", out grammarLibraryModule);
 		}
 
-		public ILexer BuildLexer(string FileName)
+		public ILexer BuildLexer(FormatHandler FormatHandler)
 		{
-			FormatHandler formatHandler;
 			Grammar grammar;
 			List<Rule> rules;
 			LexerLib.Lexer lexer;
 
 			LogEnter();
 
-			if (!AssertParameterNotNull(FileName, "FileName")) return null;
+			if (!AssertParameterNotNull(FormatHandler, "FormatHandler")) return null;
 
 			Log(LogLevels.Information, "Building lexer from format handler rules");
 			rules = new List<Rule>();
 			
-			formatHandler=formatHandlerLibraryModule.GetFormatHandler(FileName);
-			if (formatHandler == null)
-			{
-				Log(LogLevels.Error, "Failed to build lexer");
-				return null;
-			}
-			
-			foreach(string grammarName in formatHandler.Grammars)
+						
+			foreach(string grammarName in FormatHandler.Grammars)
 			{
 				grammar = grammarLibraryModule.GetGrammar(grammarName);
 				if (grammar == null) continue;

@@ -13,39 +13,31 @@ namespace LogInspector.Modules
 {
 	public class StyleProviderFactoryModule : Module, IStyleProviderFactoryModule
 	{
-		private IFormatHandlerLibraryModule formatHandlerLibraryModule;
 		private IStyleSheetLibraryModule styleSheetLibraryModule;
 	
-		public StyleProviderFactoryModule(ILogger Logger, IFormatHandlerLibraryModule FormatHandlerLibraryModule, IStyleSheetLibraryModule StyleSheetLibraryModule) : base(Logger)
+		public StyleProviderFactoryModule(ILogger Logger,  IStyleSheetLibraryModule StyleSheetLibraryModule) : base(Logger)
 		{
-			AssertParameterNotNull(FormatHandlerLibraryModule, "FormatHandlerLibraryModule", out formatHandlerLibraryModule);
 			AssertParameterNotNull(StyleSheetLibraryModule, "GrammarLibraryModule", out styleSheetLibraryModule);
 
 			
 		}
 
-		public IStyleProvider BuildStyleProvider(string FileName)
+		public IStyleProvider BuildStyleProvider(FormatHandler FormatHandler)
 		{
-			FormatHandler formatHandler;
+	
 			StyleSheet styleSheet;
 			List<Style> styles;
 			StyleProvider styleProvider;
 
 			LogEnter();
 
-			if (!AssertParameterNotNull(FileName, "FileName")) return null;
+			if (!AssertParameterNotNull(FormatHandler, "FormatHandler")) return null;
 
 			Log(LogLevels.Information, "Building style provider from format handler rules");
 			styles = new List<Style>();
 			
-			formatHandler=formatHandlerLibraryModule.GetFormatHandler(FileName);
-			if (formatHandler == null)
-			{
-				Log(LogLevels.Error, "Failed to build style provider");
-				return null;
-			}
-			
-			foreach(string styleSheetName in formatHandler.StyleSheets)
+	
+			foreach(string styleSheetName in FormatHandler.StyleSheets)
 			{
 				styleSheet = styleSheetLibraryModule.GetStyleSheet(styleSheetName);
 				if (styleSheet == null) continue;

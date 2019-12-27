@@ -16,9 +16,8 @@ namespace LogInspector.Modules.UnitTest
 		[TestMethod]
 		public void ShouldHaveValidConstructor()
 		{
-			Assert.ThrowsException<ArgumentNullException>(() => new LexerFactoryModule(null, new MockedFormatHandlerLibraryModule(), new MockedGrammarLibraryModule()));
-			Assert.ThrowsException<ArgumentNullException>(() => new LexerFactoryModule(NullLogger.Instance, null, new MockedGrammarLibraryModule()));
-			Assert.ThrowsException<ArgumentNullException>(() => new LexerFactoryModule(NullLogger.Instance, new MockedFormatHandlerLibraryModule(), null));
+			Assert.ThrowsException<ArgumentNullException>(() => new LexerFactoryModule(null,  new MockedGrammarLibraryModule()));
+			Assert.ThrowsException<ArgumentNullException>(() => new LexerFactoryModule(NullLogger.Instance, null));
 		}
 
 		[TestMethod]
@@ -38,17 +37,16 @@ namespace LogInspector.Modules.UnitTest
 			formatHandler = new FormatHandler() { FileNamePattern = "test.log" };
 			formatHandler.Grammars.Add("grammar");
 
-			module = new LexerFactoryModule(NullLogger.Instance, new MockedFormatHandlerLibraryModule(formatHandler), new MockedGrammarLibraryModule(grammar));
-			result=module.BuildLexer("test.log");
+			module = new LexerFactoryModule(NullLogger.Instance,  new MockedGrammarLibraryModule(grammar));
+			result=module.BuildLexer(formatHandler);
 			Assert.IsNotNull(result);
 			
 		}
 		[TestMethod]
-		public void ShouldNotBuildLexerWhenFormatHandlerNotFound()
+		public void ShouldNotBuildLexerWhenInvalidParameterSet()
 		{
 			LexerFactoryModule module;
 			ILexer result;
-			FormatHandler formatHandler;
 			Grammar grammar;
 			MemoryLogger logger;
 
@@ -60,15 +58,14 @@ namespace LogInspector.Modules.UnitTest
 			grammar.Items.Add(new Rule("B", Parse.Character('b')));
 			grammar.Items.Add(new Rule("C", Parse.Character('c')));
 
-			formatHandler = new FormatHandler() { FileNamePattern = "test.log" };
-			formatHandler.Grammars.Add("grammar");
+			module = new LexerFactoryModule(logger, new MockedGrammarLibraryModule(grammar));
 
-			module = new LexerFactoryModule(logger, new MockedFormatHandlerLibraryModule(formatHandler), new MockedGrammarLibraryModule(grammar));
-			
-			result = module.BuildLexer("test1.log");
+			result = module.BuildLexer(null);
 			Assert.IsNull(result);
 			Assert.AreEqual(1, logger.Logs.Where(item => item.Contains("Error")).Count());
+
 		}
+
 		[TestMethod]
 		public void ShouldNotBuildLexerWhenGrammarNotFound()
 		{
@@ -89,9 +86,9 @@ namespace LogInspector.Modules.UnitTest
 			formatHandler = new FormatHandler() { FileNamePattern = "test.log" };
 			formatHandler.Grammars.Add("grammar1");
 
-			module = new LexerFactoryModule(logger, new MockedFormatHandlerLibraryModule(formatHandler), new MockedGrammarLibraryModule(grammar));
+			module = new LexerFactoryModule(logger,  new MockedGrammarLibraryModule(grammar));
 
-			result = module.BuildLexer("test.log");
+			result = module.BuildLexer(formatHandler);
 			Assert.IsNull(result);
 			Assert.AreEqual(1, logger.Logs.Where(item => item.Contains("Error")).Count());
 

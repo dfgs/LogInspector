@@ -14,9 +14,8 @@ namespace LogInspector.Modules.UnitTest
 		[TestMethod]
 		public void ShouldHaveValidConstructor()
 		{
-			Assert.ThrowsException<ArgumentNullException>(() => new StyleProviderFactoryModule(null, new MockedFormatHandlerLibraryModule(), new MockedStyleSheetLibraryModule()));
-			Assert.ThrowsException<ArgumentNullException>(() => new StyleProviderFactoryModule(NullLogger.Instance, null, new MockedStyleSheetLibraryModule()));
-			Assert.ThrowsException<ArgumentNullException>(() => new StyleProviderFactoryModule(NullLogger.Instance, new MockedFormatHandlerLibraryModule(), null));
+			Assert.ThrowsException<ArgumentNullException>(() => new StyleProviderFactoryModule(null,  new MockedStyleSheetLibraryModule()));
+			Assert.ThrowsException<ArgumentNullException>(() => new StyleProviderFactoryModule(NullLogger.Instance,  null));
 		}
 
 		[TestMethod]
@@ -36,17 +35,16 @@ namespace LogInspector.Modules.UnitTest
 			formatHandler = new FormatHandler() { FileNamePattern = "test.log" };
 			formatHandler.StyleSheets.Add("stylesheet");
 
-			module = new StyleProviderFactoryModule(NullLogger.Instance, new MockedFormatHandlerLibraryModule(formatHandler), new MockedStyleSheetLibraryModule(styleSheet));
-			result=module.BuildStyleProvider("test.log");
+			module = new StyleProviderFactoryModule(NullLogger.Instance,  new MockedStyleSheetLibraryModule(styleSheet));
+			result=module.BuildStyleProvider(formatHandler);
 			Assert.IsNotNull(result);
 			
 		}
 		[TestMethod]
-		public void ShouldNotBuildStyleProviderWhenFormatHandlerNotFound()
+		public void ShouldBuildEmptyStyleProviderWhenInvalidParameterSet()
 		{
 			StyleProviderFactoryModule module;
 			IStyleProvider result;
-			FormatHandler formatHandler;
 			StyleSheet styleSheet;
 			MemoryLogger logger;
 
@@ -58,15 +56,12 @@ namespace LogInspector.Modules.UnitTest
 			styleSheet.Items.Add(new Style() { Class = "C2" });
 			styleSheet.Items.Add(new Style() { Class = "C3" });
 
-			formatHandler = new FormatHandler() { FileNamePattern = "test.log" };
-			formatHandler.StyleSheets.Add("stylesheet");
+			module = new StyleProviderFactoryModule(logger, new MockedStyleSheetLibraryModule(styleSheet));
 
-
-			module = new StyleProviderFactoryModule(logger, new MockedFormatHandlerLibraryModule(formatHandler), new MockedStyleSheetLibraryModule(styleSheet));
-			
-			result = module.BuildStyleProvider("test1.log");
+			result = module.BuildStyleProvider(null);
 			Assert.IsNull(result);
 			Assert.AreEqual(1, logger.Logs.Where(item => item.Contains("Error")).Count());
+
 		}
 		[TestMethod]
 		public void ShouldBuildEmptyStyleProviderWhenStyleSheetNotFound()
@@ -89,9 +84,9 @@ namespace LogInspector.Modules.UnitTest
 			formatHandler.StyleSheets.Add("stylesheet1");
 
 
-			module = new StyleProviderFactoryModule(logger, new MockedFormatHandlerLibraryModule(formatHandler), new MockedStyleSheetLibraryModule(styleSheet));
+			module = new StyleProviderFactoryModule(logger, new MockedStyleSheetLibraryModule(styleSheet));
 
-			result = module.BuildStyleProvider("test.log");
+			result = module.BuildStyleProvider(formatHandler);
 			Assert.IsNotNull(result);
 			Assert.AreEqual(0, result.Count);
 

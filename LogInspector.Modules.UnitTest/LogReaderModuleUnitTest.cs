@@ -17,9 +17,9 @@ namespace LogInspector.Modules.UnitTest
 		[TestMethod]
 		public void ShouldHaveValidConstructor()
 		{
-			Assert.ThrowsException<ArgumentNullException>(() => new LogReaderModule(null, new MockedLexer(), "LF", new Token()));
-			Assert.ThrowsException<ArgumentNullException>(() => new LogReaderModule(NullLogger.Instance, null, "LF", new Token()));
-			Assert.ThrowsException<ArgumentNullException>(() => new LogReaderModule(NullLogger.Instance, new MockedLexer(), null, new Token()));
+			Assert.ThrowsException<ArgumentNullException>(() => new LogReaderModule(null, new MockedLexer(), "LF"));
+			Assert.ThrowsException<ArgumentNullException>(() => new LogReaderModule(NullLogger.Instance, null, "LF"));
+			Assert.ThrowsException<ArgumentNullException>(() => new LogReaderModule(NullLogger.Instance, new MockedLexer(), null));
 		}
 
 		[TestMethod]
@@ -31,7 +31,7 @@ namespace LogInspector.Modules.UnitTest
 
 			logger = new MemoryLogger(new DefaultLogFormatter());
 
-			module = new LogReaderModule(logger, new MockedLexer(),"LF",new Token());
+			module = new LogReaderModule(logger, new MockedLexer(),"LF");
 			log=module.Read(null);
 			Assert.AreEqual(1, logger.Logs.Where(item => item.Contains("Error")).Count());
 			Assert.IsNull(log);
@@ -51,7 +51,7 @@ namespace LogInspector.Modules.UnitTest
 			lexer = new MockedLexer();
 			reader = new StringCharReader("abc efg hij");
 
-			module = new LogReaderModule(logger,lexer, " ", new Token());
+			module = new LogReaderModule(logger,lexer, " ");
 			log = module.Read(reader);
 			Assert.IsNotNull(log);
 			Assert.AreEqual(3, log.Tokens.Count);
@@ -80,7 +80,7 @@ namespace LogInspector.Modules.UnitTest
 			reader = new StringCharReader("abc efg abc");
 
 			// Start a new log when a char is read
-			module = new LogReaderModule(logger, lexer, " ", new Token("a","a"));
+			module = new LogReaderModule(logger, lexer, " ", "a","a");
 			log = module.Read(reader);
 			Assert.IsNotNull(log);
 			Assert.AreEqual(6, log.Tokens.Count);

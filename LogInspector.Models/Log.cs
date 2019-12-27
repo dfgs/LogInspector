@@ -25,6 +25,10 @@ namespace LogInspector.Models
 			this.Tokens = new List<Token>();
 		}
 
+		public override string ToString()
+		{
+			return LineNumber+": "+string.Join("", Tokens.Select(item => item.Value));
+		}
 
 	}
 }
