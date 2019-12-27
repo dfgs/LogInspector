@@ -22,7 +22,7 @@ namespace LogInspectorCLI
 			StyleSheetLibraryModule styleSheetLibraryModule;
 			LexerFactoryModule lexerFactoryModule;
 			StyleProviderFactoryModule styleProviderFactoryModule;
-			ConsoleLogReaderModule logReaderModule;
+			LogReaderModule logReaderModule;
 
 			logger = new ConsoleLogger(new DefaultLogFormatter());
 
@@ -54,7 +54,7 @@ namespace LogInspectorCLI
 
 			StreamCharReader reader = new StreamCharReader(new FileStream(args[0], FileMode.Open),Encoding.Default);
 
-			logReaderModule = new ConsoleLogReaderModule(logger, lexer,styleProvider);
+			logReaderModule = new LogReaderModule(logger, lexer,styleProvider);
 
 			logReaderModule.Read(reader);
 

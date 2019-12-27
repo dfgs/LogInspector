@@ -49,7 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConsoleLogReaderModuleUnitTest.cs" />
+    <Compile Include="LogReaderModuleUnitTest.cs" />
     <Compile Include="Mocks\MockedStyleSheetLibraryModule.cs" />
     <Compile Include="StyleProviderFactoryModuleUnitTest.cs" />
     <Compile Include="StyleProviderUnitTest.cs" />

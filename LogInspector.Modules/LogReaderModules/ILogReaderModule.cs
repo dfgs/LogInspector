@@ -1,4 +1,5 @@
 ﻿using LexerLib;
+using LogInspector.Models;
 using ModuleLib;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace LogInspector.Modules.LogReaderModules
 {
 	public interface ILogReaderModule : IModule
 	{
-		void Read(ICharReader Reader);
+		Log Read(ICharReader Reader);
 	}
 }

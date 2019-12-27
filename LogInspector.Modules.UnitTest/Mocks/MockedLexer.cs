@@ -9,14 +9,23 @@ namespace LogInspector.Modules.UnitTest.Mocks
 {
 	public class MockedLexer : ILexer
 	{
+		
 		public Token Read(ICharReader Reader)
 		{
-			throw new NotImplementedException();
+			char value;
+
+			value = Reader.Read();
+			return new Token(value.ToString(), value.ToString());
 		}
 
 		public bool TryRead(ICharReader Reader, out Token Token)
 		{
-			throw new NotImplementedException();
+			char value;
+
+			value = Reader.Read();
+			Token= new Token(value.ToString(), value.ToString());
+			return true;
 		}
+
 	}
 }
