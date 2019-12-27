@@ -40,5 +40,14 @@ namespace LogInspectorCLI.Properties {
                 return ((string)(this["FormatHandlerLibrariesPath"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("StyleSheets")]
+        public string StyleSheetsLibrariesPath {
+            get {
+                return ((string)(this["StyleSheetsLibrariesPath"]));
+            }
+        }
     }
 }

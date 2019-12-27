@@ -4,4 +4,7 @@
 	<Grammars>
 		<string>Default</string>
 	</Grammars>
+	<StyleSheets>
+		<string>Default</string>
+	</StyleSheets>
 </FormatHandler>

@@ -19,7 +19,9 @@ namespace LogInspectorCLI
 			ILogger logger;
 			GrammarLibraryModule grammarLibraryModule;
 			FormatHandlerLibraryModule formatHandlerLibraryModule;
+			StyleSheetLibraryModule styleSheetLibraryModule;
 			LexerFactoryModule lexerFactoryModule;
+			StyleProviderFactoryModule styleProviderFactoryModule;
 			ConsoleLogReaderModule logReaderModule;
 
 			logger = new ConsoleLogger(new DefaultLogFormatter());
@@ -36,14 +38,23 @@ namespace LogInspectorCLI
 			formatHandlerLibraryModule = new FormatHandlerLibraryModule(logger);
 			formatHandlerLibraryModule.LoadDirectory(Properties.Settings.Default.FormatHandlerLibrariesPath);
 
+			styleSheetLibraryModule = new StyleSheetLibraryModule(logger);
+			styleSheetLibraryModule.LoadDirectory(Properties.Settings.Default.StyleSheetsLibrariesPath);
+
 			lexerFactoryModule = new LexerFactoryModule(logger, formatHandlerLibraryModule, grammarLibraryModule);
+			styleProviderFactoryModule = new StyleProviderFactoryModule(logger, formatHandlerLibraryModule, styleSheetLibraryModule);
+
 
 			ILexer lexer = lexerFactoryModule.BuildLexer(args[0]);
 			if (lexer == null) return;
-			
+
+			IStyleProvider styleProvider = styleProviderFactoryModule.BuildStyleProvider(args[0]);
+			if (styleProvider == null) return;
+
+
 			StreamCharReader reader = new StreamCharReader(new FileStream(args[0], FileMode.Open),Encoding.Default);
 
-			logReaderModule = new ConsoleLogReaderModule(logger, lexer);
+			logReaderModule = new ConsoleLogReaderModule(logger, lexer,styleProvider);
 
 			logReaderModule.Read(reader);
 

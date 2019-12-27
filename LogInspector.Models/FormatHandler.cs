@@ -28,10 +28,16 @@ namespace LogInspector.Models
 			get;
 			set;
 		}
+		public List<string> StyleSheets
+		{
+			get;
+			set;
+		}
 
 		public FormatHandler()
 		{
 			Grammars = new List<string>();
+			StyleSheets = new List<string>();
 		}
 
 	}

@@ -45,7 +45,11 @@
     <Compile Include="FileLoaders\FormatHandlerFileLoader.cs" />
     <Compile Include="FileLoaders\StyleSheetFileLoader.cs" />
     <Compile Include="FileLoaders\GrammarFileLoader.cs" />
+    <Compile Include="IStyleProvider.cs" />
+    <Compile Include="IStyleProviderFactoryModule.cs" />
     <Compile Include="ILexerFactoryModule.cs" />
+    <Compile Include="StyleProvider.cs" />
+    <Compile Include="StyleProviderFactoryModule.cs" />
     <Compile Include="LexerFactoryModule.cs" />
     <Compile Include="LibraryModules\FormatHandlerLibraryModule.cs" />
     <Compile Include="LibraryModules\StyleSheetLibraryModule.cs" />

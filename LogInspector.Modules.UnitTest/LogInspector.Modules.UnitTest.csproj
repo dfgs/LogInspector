@@ -50,6 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleLogReaderModuleUnitTest.cs" />
+    <Compile Include="Mocks\MockedStyleSheetLibraryModule.cs" />
+    <Compile Include="StyleProviderFactoryModuleUnitTest.cs" />
+    <Compile Include="StyleProviderUnitTest.cs" />
     <Compile Include="LexerFactoryModuleUnitTest.cs" />
     <Compile Include="LibraryModules\FormatHandlerLibraryModuleUnitTest.cs" />
     <Compile Include="LibraryModules\StyleSheetLibraryModuleUnitTest.cs" />

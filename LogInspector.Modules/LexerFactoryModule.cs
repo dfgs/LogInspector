@@ -26,7 +26,7 @@ namespace LogInspector.Modules
 			FormatHandler formatHandler;
 			Grammar grammar;
 			List<Rule> rules;
-			Lexer lexer;
+			LexerLib.Lexer lexer;
 
 			LogEnter();
 
@@ -55,7 +55,7 @@ namespace LogInspector.Modules
 				return null;
 			}
 
-			lexer = new Lexer( rules.ToArray());
+			lexer = new LexerLib.Lexer( rules.ToArray());
 			return lexer;
 		}
 	}

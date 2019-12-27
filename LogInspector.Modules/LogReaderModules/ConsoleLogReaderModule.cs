@@ -1,4 +1,5 @@
 ﻿using LexerLib;
+using LogInspector.Models;
 using LogLib;
 using ModuleLib;
 using System;
@@ -12,14 +13,19 @@ namespace LogInspector.Modules.LogReaderModules
 	public class ConsoleLogReaderModule : Module, ILogReaderModule
 	{
 		private ILexer lexer;
-		public ConsoleLogReaderModule(ILogger Logger,ILexer Lexer) : base(Logger)
+		private IStyleProvider styleProvider;
+
+		public ConsoleLogReaderModule(ILogger Logger,ILexer Lexer,IStyleProvider StyleProvider) : base(Logger)
 		{
-			AssertParameterNotNull(Lexer, "Lexer",out lexer);
+			AssertParameterNotNull(Lexer, "Lexer", out lexer);
+			AssertParameterNotNull(StyleProvider, "StyleProvider", out styleProvider);
 		}
 
 		public void Read(ICharReader Reader)
 		{
 			Token token;
+			Style style;
+			ConsoleColor color;
 
 			if (!AssertParameterNotNull(Reader, "Reader", LogLevels.Error)) return;
 
@@ -32,30 +38,25 @@ namespace LogInspector.Modules.LogReaderModules
 					return;
 				}
 
-				switch(token.Class)
+				style = styleProvider.GetStyle(token);
+				if (style==null)
+				{
+					Console.ForegroundColor = ConsoleColor.White;
+				}
+				else
+				{
+					if (Enum.TryParse<ConsoleColor>(style.Foreground, out color)) Console.ForegroundColor = color;
+					else Console.ForegroundColor = ConsoleColor.White;
+				}
+				switch (token.Class)
 				{
 					case "LF":
-						Console.ForegroundColor = ConsoleColor.White;
 						Console.WriteLine();
 						break;
 					case "Space":
-						Console.ForegroundColor = ConsoleColor.White;
 						Console.Write(" ");
 						break;
-					case "Number":
-						Console.ForegroundColor = ConsoleColor.Yellow;
-						Console.Write(token.Value);
-						break;
-					case "Symbol":
-						Console.ForegroundColor = ConsoleColor.Blue;
-						Console.Write(token.Value);
-						break;
-					case "DateTime":
-						Console.ForegroundColor = ConsoleColor.Green;
-						Console.Write(token.Value);
-						break;
 					default:
-						Console.ForegroundColor = ConsoleColor.White;
 						Console.Write(token.Value);
 						break;
 				}
