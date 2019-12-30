@@ -2,6 +2,6 @@
 <StyleSheet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" NameSpace="Default">
 	<Items>
 		<Style Class="Number" Foreground="Blue"/>
-		<Style Class="Date" Foreground="Green" Bold="true"/>
+		<Style Class="DateTime" Foreground="Green" Bold="true"/>
 	</Items>
 </StyleSheet>

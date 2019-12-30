@@ -12,5 +12,7 @@ namespace LogInspector.Modules.LogReaderModules
 	public interface ILogReaderModule : IModule
 	{
 		Log Read(ICharReader Reader);
+
+		void AddIgnoredTokens(params string[] Tokens);
 	}
 }

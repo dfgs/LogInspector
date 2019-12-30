@@ -50,11 +50,16 @@ namespace LogInspector.Models
 			get;
 			set;
 		}
-
+		public List<string> IgnoredTokens
+		{
+			get;
+			set;
+		}
 		public FormatHandler()
 		{
 			Grammars = new List<string>();
 			StyleSheets = new List<string>();
+			IgnoredTokens = new List<string>();
 		}
 
 	}

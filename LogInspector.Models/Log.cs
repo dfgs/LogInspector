@@ -9,6 +9,11 @@ namespace LogInspector.Models
 {
 	public class Log
 	{
+		public long Position
+		{
+			get;
+			set;
+		}
 		public int LineNumber
 		{
 			get;

@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleDumpModules\ConsoleDumpModule.cs" />
+    <Compile Include="ConsoleDumpModules\IConsoleDumpModule.cs" />
     <Compile Include="DirectoryEnumerator.cs" />
     <Compile Include="FileLoaders\FormatHandlerFileLoader.cs" />
     <Compile Include="FileLoaders\StyleSheetFileLoader.cs" />

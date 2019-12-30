@@ -16,18 +16,36 @@ namespace LogInspector.Modules.LogReaderModules
 		private int lineNumber;
 
 		private string lineFeedClass;
-		private string logStartClass;
-		private string logStartValue;
+		
+		public string LogStartClass
+		{
+			get;
+			set;
+		}
+		public string LogStartValue
+		{
+			get;
+			set;
+		}
 
-		public LogReaderModule(ILogger Logger,ILexer Lexer,string LineFeedClass,string LogStartClass = null, string LogStartValue = null) : base(Logger)
+		private Dictionary<string, string> ignoredTokens;
+
+		public LogReaderModule(ILogger Logger,ILexer Lexer,string LineFeedClass) : base(Logger)
 		{
 			AssertParameterNotNull(Lexer, "Lexer", out lexer);
 			AssertParameterNotNull(LineFeedClass, "LineFeedClass", out lineFeedClass);
-
-			this.logStartClass = LogStartClass;
-			this.logStartValue = LogStartValue;
+	
+			ignoredTokens = new Dictionary<string, string>();
+		
 
 			lineNumber = 1;
+		}
+		public void AddIgnoredTokens(params string[] Tokens)
+		{
+			foreach (string item in Tokens)
+			{
+				if (!ignoredTokens.ContainsKey(item)) ignoredTokens.Add(item, item);
+			}
 		}
 
 		public Log Read(ICharReader Reader)
@@ -42,6 +60,8 @@ namespace LogInspector.Modules.LogReaderModules
 			tokenNumber = 0;
 			log = new Log();
 			log.LineNumber = lineNumber;
+			log.Position = Reader.Position;
+
 			do
 			{
 				position = Reader.Position;
@@ -53,20 +73,22 @@ namespace LogInspector.Modules.LogReaderModules
 					return log;
 				}
 
+				if (ignoredTokens.ContainsKey(token.Class)) continue;
+
 				if (token.Class == lineFeedClass)
 				{
 					lineNumber++;
 					tokenNumber = 0;
 					// line feed triggers a new log
-					if (logStartClass == null) return log;
+					if (LogStartClass == null) return log;
 					// line feed doesn't triggers a new log
 					continue;
 				}
 
 				// start of a new log
-				if ( (token.Class == logStartClass) && (lineNumber != log.LineNumber) && (tokenNumber==0))
+				if ((token.Class == LogStartClass) && (lineNumber != log.LineNumber) && (tokenNumber == 0))
 				{
-					if ((logStartValue == null) || (token.Value == logStartValue))
+					if ((LogStartValue == null) || (token.Value == LogStartValue))
 					{
 						Reader.Seek(position);
 						return log;

@@ -1,6 +1,7 @@
 ﻿using LexerLib;
 using LogInspector.Models;
 using LogInspector.Modules;
+using LogInspector.Modules.ConsoleDumpModules;
 using LogInspector.Modules.LibraryModules;
 using LogInspector.Modules.LogReaderModules;
 using LogLib;
@@ -20,10 +21,11 @@ namespace LogInspectorCLI
 			StyleSheetLibraryModule styleSheetLibraryModule;
 			LexerFactoryModule lexerFactoryModule;
 			StyleProviderFactoryModule styleProviderFactoryModule;
-			LogReaderModule logReaderModule;
+			LogInspector.Modules.LogReaderModules.LogReaderModule logReaderModule;
+			LogInspector.Modules.ConsoleDumpModules.ConsoleDumpModule consoleDumpModule;
+
 			FormatHandler formatHandler;
 
-			Console.BufferWidth = 320;
 
 			logger = new ConsoleLogger(new DefaultLogFormatter());
 
@@ -68,14 +70,14 @@ namespace LogInspectorCLI
 
 			StreamCharReader reader = new StreamCharReader(new FileStream(args[0], FileMode.Open), Encoding.Default);
 
-			logReaderModule = new LogReaderModule(logger, lexer,formatHandler.LineFeedClass, formatHandler.LogStartClass, formatHandler.LogStartValue);
+			logReaderModule = new LogReaderModule(logger, lexer, formatHandler.LineFeedClass);
+			logReaderModule.LogStartClass = formatHandler.LogStartClass;
+			logReaderModule.LogStartValue = formatHandler.LogStartValue;
+			logReaderModule.AddIgnoredTokens(formatHandler.IgnoredTokens.ToArray());
 
-			while (!reader.EOF)
-			{
-				Log log = logReaderModule.Read(reader);
-				Console.WriteLine(log);
-				Console.ReadKey();
-			}
+			consoleDumpModule = new ConsoleDumpModule(logger, logReaderModule,styleProvider);
+
+			consoleDumpModule.DumpToConsole(reader);
 
 		}
 	}

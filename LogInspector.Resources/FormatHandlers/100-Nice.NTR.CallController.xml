@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0"?>
 <FormatHandler xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-               Name="Nice.NTR.CallController" FileNamePattern=".+" LineFeedClass="LF" LogStartClass="Symbol" LogStartValue="[">
+               Name="Nice.NTR.CallController" FileNamePattern=".+" LineFeedClass="CRLF" LogStartClass="Symbol" LogStartValue="[">
 	<Grammars>
 		<string>Default</string>
 	</Grammars>
 	<StyleSheets>
 		<string>Default</string>
 	</StyleSheets>
+	<IgnoredTokens>
+	</IgnoredTokens>
 </FormatHandler>
